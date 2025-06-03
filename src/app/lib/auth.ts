@@ -1,6 +1,6 @@
-// lib/auth.ts
 import { getApps, initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
+import type { NextApiRequest } from 'next';
 
 // Initialize Firebase Admin SDK once
 if (!getApps().length) {
@@ -17,7 +17,7 @@ if (!getApps().length) {
  * Verifies a Firebase ID token passed in the Authorization header.
  * Throws an error if the token is missing or invalid.
  */
-export async function verifyToken(req: any): Promise<string> {
+export async function verifyToken(req: NextApiRequest): Promise<string> {
   const authHeader = req.headers.authorization || '';
   const token = authHeader.replace('Bearer ', '');
 

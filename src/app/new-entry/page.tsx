@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth } from '../lib/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function NewEntryPage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -22,7 +22,7 @@ export default function NewEntryPage() {
       }
     });
 
-    return () => unsubscribe(); // Cleanup when component is removed
+    return () => unsubscribe();
   }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,8 +41,12 @@ export default function NewEntryPage() {
         createdAt: serverTimestamp(),
       });
       router.push('/dashboard');
-    } catch (error) {
-      console.error('Error adding document: ', error);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error('An unknown error occurred.');
+      }
     }
   };
 

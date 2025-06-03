@@ -53,9 +53,10 @@ export default function Home() {
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Reflect</h3>
-            <p className="text-gray-600">
-              Review past entries to see how you've grown and changed over time
-            </p>
+           <p className="text-gray-600">
+  Review past entries to see how you&apos;ve grown and changed over time
+</p>
+
           </div>
 
      

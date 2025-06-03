@@ -4,6 +4,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation'; 
 import { auth, db } from "../lib/firebase"; 
 import { collection,query,orderBy,onSnapshot,deleteDoc,doc,} from 'firebase/firestore'; 
+import { User } from 'firebase/auth';
  
 interface JournalEntry { 
   id: string;   
@@ -15,7 +16,7 @@ interface JournalEntry {
 
 export default function DashboardPage() { 
   const router = useRouter(); 
-  const [user, setUser] = useState<any>(null); 
+  const [user, setUser] = useState<User | null>(null); 
   const [entries, setEntries] = useState<JournalEntry[]>([]); 
  
   // Check auth state 
