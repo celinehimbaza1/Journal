@@ -55,7 +55,7 @@ export default function NewEntryPage() {
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-8 text-black">
       <div className="max-w-xl mx-auto bg-white shadow-md rounded p-6 space-y-6">
-        <h2 className="text-2xl font-bold text-center">New Journal Entry</h2>
+        <h2 className="text-2xl font-bold text-center">New Journal-Entry</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
